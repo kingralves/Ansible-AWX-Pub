@@ -1,0 +1,9 @@
+---
+- name: Default Playbook - Ansible Facts
+  hosts: all
+
+  tasks:
+    - name: Get Ansible Facts
+      debug:
+        var: ansible_facts
+...

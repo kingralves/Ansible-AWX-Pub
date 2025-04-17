@@ -1,20 +1,26 @@
 ---
 
-- name: Update Rocky Linux Servers - Starting Deploy
-  hosts: redhat
+- name: Update Linux
+
+  hosts: all
+  
   tasks:
-    - name: DNF | Update System
-      ansible.builtin.dnf:
+    - name: YUM | Update Systems
+      ansible.builtin.yum:
         name: "*"
         state: latest
         update_cache: yes
+      when: ansible_distribution == "Rocky" or ansible_distribution == "RedHat"
 
-- name: Update Debian Linux Servers - Starting Deploy
-  hosts: debian
-  tasks:
-    - name: Debian Like | Update System
+    - name: APT | Update Cache
+      ansible.builtin.apt:
+        update_cache: yes
+      when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"
+      
+    - name: APT | Update Systems
       ansible.builtin.apt:
         name: "*"
         state: latest
+      when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"
 
 ...

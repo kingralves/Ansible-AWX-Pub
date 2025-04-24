@@ -1,0 +1,11 @@
+---
+- name: Install Packages on Red Hat using YUM
+  hosts: all
+  tasks:
+    - name: YUM | Install packages
+      yum:
+        name: "{{ packages }}"
+        state: latest
+      when: ansible_distribution == 'RedHat' or ansible_distribution == 'CentOS'
+      
+...

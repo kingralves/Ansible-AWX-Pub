@@ -1,0 +1,14 @@
+---
+
+- name: Add New User
+  hosts: all
+  tasks:
+    - name: User | Add User
+      user:
+        name: "{{ username }}"
+        comment: "{{ comment }}"
+        shell: "{{ shell }}"
+        home: "{{ home }}"
+        password: "{{ '{{ password }}' | password_hash('sha512', 'mysecretsalt') }}"
+
+...

@@ -1,5 +1,5 @@
 ---
-- name: Install Packages on Red Hat using YUM
+- name: Install Packages on Red Hat using YUM With Prompt
   hosts: all
   tasks:
     - name: YUM | Install packages

@@ -1,0 +1,86 @@
+---
+- name: Install Packages on Red Hat using YUM With Tags
+  hosts: all
+
+  tasks:
+
+    - name: YUM | Install packages for Text Editors
+      yum:
+        name: "{{ item }}"
+        state: latest
+      when: ansible_os_family == "RedHat"
+      loop:
+        - vi
+        - vim
+        - nano
+      tags: texteditors
+
+    - name: YUM | Install packages for Networking Tools
+      yum:
+        name: "{{ item }}"
+        state: latest
+      when: ansible_os_family == "RedHat"
+      loop:
+        - tcpdump
+        - nmap
+        - traceroute
+        - net-tools
+        - bind-utils
+        - iproute
+        - mtr
+      tags: nettools
+
+    - name: YUM | Install packages for Monitoring Tools
+      yum:
+        name: "{{ item }}"
+        state: latest
+      when: ansible_os_family == "RedHat"
+      loop:
+        - htop
+        - glances
+        - sysstat
+        - dstat
+        - lm_sensors
+        - iotop
+      tags: monitoring
+
+    - name: YUM | Install packages for Security Tools
+      yum:
+        name: "{{ item }}"
+        state: latest
+      when: ansible_os_family == "RedHat"
+      loop:
+        - fail2ban
+        - firewalld
+        - setools-console
+        - policycoreutils
+        - audit
+      tags: security
+
+    - name: YUM | Install packages for Disk Management
+      yum:
+        name: "{{ item }}"
+        state: latest
+      when: ansible_os_family == "RedHat"
+      loop:
+        - tree
+        - ncdu
+        - parted
+        - xfsprogs
+        - e2fsprogs
+      tags: diskmgmt
+
+    - name: YUM | Install packages for SysAdmin Essentials
+      yum:
+        name: "{{ item }}"
+        state: latest
+      when: ansible_os_family == "RedHat"
+      loop:
+        - tmux
+        - screen
+        - lsof
+        - strace
+        - wget
+        - curl
+        - unzip
+      tags: sysadmin

@@ -1,8 +1,6 @@
 ---
 
 - name: Starting deploy
-  collections:
-    - community.aws
   hosts: all
   tasks:
     - name: Route53 | Create a A Record
